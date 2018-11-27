@@ -14,11 +14,21 @@ describe('Header tests', () => {
       ReactDOM.unmountComponentAtNode(div);
    })
 
-   it('Header renders', () => {
+   it('Header changes text acording to state', () => {
       const wrapper = shallow(<Header />);
-      
-      expect(wrapper.find('h1').text()).toBe('Header');
+      expect(wrapper.find('h1').text()).toBe('Black books');
+      wrapper.setState({
+         bookstoreName: "White books"
+      })
+      expect(wrapper.find('h1').text()).toBe('White books');
 
+   })
+
+   it('Header state changes after clicking on header div', () => {
+      const wrapper = shallow(<Header />);
+      expect(wrapper.state().bookstoreName).toBe('Black books');
+      wrapper.find('.header').simulate('click');
+      expect(wrapper.state().bookstoreName).toBe('White books');
    })
 })
 
