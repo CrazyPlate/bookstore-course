@@ -40,7 +40,7 @@ class Header extends React.Component {
 
       return (
          <div className="row header" style={headerCss} onClick={this.handleClick} >
-            <center><h1>{this.state.bookstoreName}</h1></center>
+            <h1>{this.state.bookstoreName}</h1>
          </div>
       )
    }

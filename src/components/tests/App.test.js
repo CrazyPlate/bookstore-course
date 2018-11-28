@@ -23,5 +23,10 @@ describe('App tests', () => {
       expect(wrapper.find('Inventory').exists()).toBe(true);
 
    })
+
+   it('Snapshot matches', () => {
+      const wrapper = shallow(<App />);
+      expect(wrapper).toMatchSnapshot();
+   })
 })
 

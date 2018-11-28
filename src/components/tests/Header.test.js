@@ -30,5 +30,10 @@ describe('Header tests', () => {
       wrapper.find('.header').simulate('click');
       expect(wrapper.state().bookstoreName).toBe('White books');
    })
+
+   it('Snapshot matches', () => {
+      const wrapper = shallow(<Header />);
+      expect(wrapper).toMatchSnapshot();
+   })
 })
 

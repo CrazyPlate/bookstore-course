@@ -16,9 +16,12 @@ describe('Inventory tests', () => {
 
    it('Inwentarz renders', () => {
       const wrapper = shallow(<Inventory />);
-      
       expect(wrapper.find('div').text()).toBe('Inwentarz');
+   })
 
+   it('Snapshot matches', () => {
+      const wrapper = shallow(<Inventory />);
+      expect(wrapper).toMatchSnapshot();
    })
 })
 

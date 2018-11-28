@@ -14,11 +14,14 @@ describe('Order tests', () => {
       ReactDOM.unmountComponentAtNode(div);
    })
 
+   it('Snapshot matches', () => {
+      const wrapper = shallow(<Order />);
+      expect(wrapper).toMatchSnapshot();
+   })
+
    it('Zamówienie renders', () => {
       const wrapper = shallow(<Order />);
-      
       expect(wrapper.find('div').text()).toBe('Zamówienie');
-
    })
 })
 
