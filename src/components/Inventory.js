@@ -1,11 +1,20 @@
 import React from 'react';
+import BookView from './BookView';
 
 class Inventory extends React.Component {
    render() {
+      const bookListing = this.props.books.map( book => {
+         return <BookView book={book} />
+      });
+
+      const ulCss = {
+         listStyle: "none"
+      };
+
       return (
-         <div className="inventory col-md-4">
-            Inwentarz
-         </div>
+         <ul className="inventory col-md-4" style={ulCss}>
+            { bookListing }
+         </ul>
       )
    }
 }
