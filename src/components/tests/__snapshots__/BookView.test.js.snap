@@ -1,9 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App tests Snapshot matches 1`] = `
+exports[`BookView tests Snapshot matches 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <App />,
+  Symbol(enzyme.__unrendered__): <BookView
+    book={
+      Object {
+        "name": "Book title",
+      }
+    }
+  />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -18,31 +24,43 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": Array [
-        <Header />,
-        <div
-          className="row"
+        <img
+          alt="Book title"
+          height="100"
+          width="75"
+        />,
+        <span>
+          <b>
+            Book title
+          </b>
+          <i />
+        </span>,
+        <button
+          className="btn btn-secondary"
+          onClick={[Function]}
         >
-          <Order
-            order={Array []}
-            removeFromOrder={[Function]}
-          />
-          <Inventory
-            addToOrder={[Function]}
-          />
-        </div>,
+          Add to order
+        </button>,
       ],
-      "className": "app container",
+      "style": Object {
+        "padding": "5px",
+      },
     },
     "ref": null,
     "rendered": Array [
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "class",
-        "props": Object {},
+        "nodeType": "host",
+        "props": Object {
+          "alt": "Book title",
+          "height": "100",
+          "src": undefined,
+          "width": "75",
+        },
         "ref": null,
         "rendered": null,
-        "type": [Function],
+        "type": "img",
       },
       Object {
         "instance": null,
@@ -50,47 +68,54 @@ ShallowWrapper {
         "nodeType": "host",
         "props": Object {
           "children": Array [
-            <Order
-              order={Array []}
-              removeFromOrder={[Function]}
-            />,
-            <Inventory
-              addToOrder={[Function]}
-            />,
+            <b>
+              Book title
+            </b>,
+            <i />,
           ],
-          "className": "row",
         },
         "ref": null,
         "rendered": Array [
           Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "class",
+            "nodeType": "host",
             "props": Object {
-              "order": Array [],
-              "removeFromOrder": [Function],
+              "children": "Book title",
             },
             "ref": null,
-            "rendered": null,
-            "type": [Function],
+            "rendered": "Book title",
+            "type": "b",
           },
           Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "class",
+            "nodeType": "host",
             "props": Object {
-              "addToOrder": [Function],
-              "books": undefined,
+              "children": undefined,
             },
             "ref": null,
             "rendered": null,
-            "type": [Function],
+            "type": "i",
           },
         ],
-        "type": "div",
+        "type": "span",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Add to order",
+          "className": "btn btn-secondary",
+          "onClick": [Function],
+        },
+        "ref": null,
+        "rendered": "Add to order",
+        "type": "button",
       },
     ],
-    "type": "div",
+    "type": "li",
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
@@ -99,31 +124,43 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": Array [
-          <Header />,
-          <div
-            className="row"
+          <img
+            alt="Book title"
+            height="100"
+            width="75"
+          />,
+          <span>
+            <b>
+              Book title
+            </b>
+            <i />
+          </span>,
+          <button
+            className="btn btn-secondary"
+            onClick={[Function]}
           >
-            <Order
-              order={Array []}
-              removeFromOrder={[Function]}
-            />
-            <Inventory
-              addToOrder={[Function]}
-            />
-          </div>,
+            Add to order
+          </button>,
         ],
-        "className": "app container",
+        "style": Object {
+          "padding": "5px",
+        },
       },
       "ref": null,
       "rendered": Array [
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
-          "props": Object {},
+          "nodeType": "host",
+          "props": Object {
+            "alt": "Book title",
+            "height": "100",
+            "src": undefined,
+            "width": "75",
+          },
           "ref": null,
           "rendered": null,
-          "type": [Function],
+          "type": "img",
         },
         Object {
           "instance": null,
@@ -131,47 +168,54 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": Array [
-              <Order
-                order={Array []}
-                removeFromOrder={[Function]}
-              />,
-              <Inventory
-                addToOrder={[Function]}
-              />,
+              <b>
+                Book title
+              </b>,
+              <i />,
             ],
-            "className": "row",
           },
           "ref": null,
           "rendered": Array [
             Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "class",
+              "nodeType": "host",
               "props": Object {
-                "order": Array [],
-                "removeFromOrder": [Function],
+                "children": "Book title",
               },
               "ref": null,
-              "rendered": null,
-              "type": [Function],
+              "rendered": "Book title",
+              "type": "b",
             },
             Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "class",
+              "nodeType": "host",
               "props": Object {
-                "addToOrder": [Function],
-                "books": undefined,
+                "children": undefined,
               },
               "ref": null,
               "rendered": null,
-              "type": [Function],
+              "type": "i",
             },
           ],
-          "type": "div",
+          "type": "span",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Add to order",
+            "className": "btn btn-secondary",
+            "onClick": [Function],
+          },
+          "ref": null,
+          "rendered": "Add to order",
+          "type": "button",
         },
       ],
-      "type": "div",
+      "type": "li",
     },
   ],
   Symbol(enzyme.__options__): Object {

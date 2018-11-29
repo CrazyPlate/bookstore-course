@@ -1,9 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Header tests Snapshot matches 1`] = `
+exports[`OrderView tests Snapshot matches 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <Header />,
+  Symbol(enzyme.__unrendered__): <OrderView
+    book={
+      Object {
+        "name": "Book title",
+      }
+    }
+  />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -18,26 +24,25 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": Array [
-        <center>
-          <h1>
-            Black books
-          </h1>
-        </center>,
-        <Link
-          replace={false}
-          to="/admin"
+        <span>
+          <b>
+            Book title
+          </b>
+        </span>,
+        <button
+          className="btn btn-secondary"
+          onClick={[Function]}
+          style={
+            Object {
+              "float": "right",
+            }
+          }
         >
-          Go to Admin Panel
-        </Link>,
+          Remove
+        </button>,
       ],
-      "className": "row header",
-      "onClick": [Function],
       "style": Object {
-        "backgroundColor": "black",
-        "color": "white",
-        "display": "flex",
-        "flexDirection": "row",
-        "justifyContent": "center",
+        "padding": "15px",
       },
     },
     "ref": null,
@@ -47,9 +52,9 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "host",
         "props": Object {
-          "children": <h1>
-            Black books
-          </h1>,
+          "children": <b>
+            Book title
+          </b>,
         },
         "ref": null,
         "rendered": Object {
@@ -57,29 +62,32 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
-            "children": "Black books",
+            "children": "Book title",
           },
           "ref": null,
-          "rendered": "Black books",
-          "type": "h1",
+          "rendered": "Book title",
+          "type": "b",
         },
-        "type": "center",
+        "type": "span",
       },
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "class",
+        "nodeType": "host",
         "props": Object {
-          "children": "Go to Admin Panel",
-          "replace": false,
-          "to": "/admin",
+          "children": "Remove",
+          "className": "btn btn-secondary",
+          "onClick": [Function],
+          "style": Object {
+            "float": "right",
+          },
         },
         "ref": null,
-        "rendered": "Go to Admin Panel",
-        "type": [Function],
+        "rendered": "Remove",
+        "type": "button",
       },
     ],
-    "type": "div",
+    "type": "li",
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
@@ -88,26 +96,25 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": Array [
-          <center>
-            <h1>
-              Black books
-            </h1>
-          </center>,
-          <Link
-            replace={false}
-            to="/admin"
+          <span>
+            <b>
+              Book title
+            </b>
+          </span>,
+          <button
+            className="btn btn-secondary"
+            onClick={[Function]}
+            style={
+              Object {
+                "float": "right",
+              }
+            }
           >
-            Go to Admin Panel
-          </Link>,
+            Remove
+          </button>,
         ],
-        "className": "row header",
-        "onClick": [Function],
         "style": Object {
-          "backgroundColor": "black",
-          "color": "white",
-          "display": "flex",
-          "flexDirection": "row",
-          "justifyContent": "center",
+          "padding": "15px",
         },
       },
       "ref": null,
@@ -117,9 +124,9 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
-            "children": <h1>
-              Black books
-            </h1>,
+            "children": <b>
+              Book title
+            </b>,
           },
           "ref": null,
           "rendered": Object {
@@ -127,29 +134,32 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
-              "children": "Black books",
+              "children": "Book title",
             },
             "ref": null,
-            "rendered": "Black books",
-            "type": "h1",
+            "rendered": "Book title",
+            "type": "b",
           },
-          "type": "center",
+          "type": "span",
         },
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
+          "nodeType": "host",
           "props": Object {
-            "children": "Go to Admin Panel",
-            "replace": false,
-            "to": "/admin",
+            "children": "Remove",
+            "className": "btn btn-secondary",
+            "onClick": [Function],
+            "style": Object {
+              "float": "right",
+            },
           },
           "ref": null,
-          "rendered": "Go to Admin Panel",
-          "type": [Function],
+          "rendered": "Remove",
+          "type": "button",
         },
       ],
-      "type": "div",
+      "type": "li",
     },
   ],
   Symbol(enzyme.__options__): Object {

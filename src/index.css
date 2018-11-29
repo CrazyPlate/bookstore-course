@@ -9,22 +9,29 @@ body {
 }
 
 .app {
-  background-color: aqua;
-}
-
-.header {
-  background-color: brown;
-}
-
-.order {
   background-color: darkgray;
 }
 
-.inventory {
-  background-color: green;
+.header > h1 {
+  margin: 0 auto;
+  height: 70px;
+  font-weight: 800;
 }
 
-.adminPanel {
-  background-color: black;
-  padding: 10px;
+.bookView {
+  border: 2px solid black;
+  border-radius: 5px;
+  margin-top: 5px;
+  padding: 5px;
+}
+
+.orderView {
+  border-bottom: 2px solid black;
+  margin: 5px;
+  padding: 5px;
+}
+
+.goToAdmin {
+  float: right;
+  margin: 5px;
 }

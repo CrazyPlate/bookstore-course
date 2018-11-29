@@ -1,5 +1,4 @@
 import React from 'react';
-import AdminPanel from './AdminPanel';
 import Header from './Header';
 import Inventory from './Inventory';
 import Order from './Order';
@@ -10,16 +9,20 @@ class App extends React.Component {
    constructor() {
       super();
       this.state = {
-         books: []
+         order: []
       }
    }
 
-   addNewBook = (book) => {
-      let newBooks = [...this.state.books];
-      newBooks.push(book);
+   addToOrder = (book) => {
       this.setState({
-         books: newBooks
-      });
+         order: [...this.state.order, book]
+      })
+   }
+
+   removeFromOrder = (title) => {
+      this.setState({
+         order: this.state.order.filter( book => title !== book.name )
+      })
    }
 
    render() {
@@ -27,9 +30,8 @@ class App extends React.Component {
          <div className="app container">
             <Header />
             <div className="row">
-               <Order />
-               <Inventory books={this.state.books}/>
-               <AdminPanel books={this.state.books} addBook={this.addNewBook}/>
+               <Order order={this.state.order} removeFromOrder={this.removeFromOrder} />
+               <Inventory books={this.state.books} addToOrder={this.addToOrder}/>
             </div>
          </div>
       )

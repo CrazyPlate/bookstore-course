@@ -1,10 +1,12 @@
 import React from 'react';
+import { fbase } from '../fbase';
 
 class AdminPanel extends React.Component {
 
    constructor() {
       super();
       this.state = {
+         books: [],
          book: {
             name: "",
             author: "",
@@ -39,7 +41,13 @@ class AdminPanel extends React.Component {
 
       let newBook = { ...this.state.book };
 
-      this.props.addBook(newBook);
+      /* this.props.addBook(newBook); */
+
+      if(Array.isArray(this.state.books)) {
+         this.setState({books: [...this.state.books, newBook]}) 
+      } else {  
+         this.setState({books: [newBook]})
+      }
 
       this.setState({
          book: {
@@ -52,14 +60,29 @@ class AdminPanel extends React.Component {
       })
    }
 
+   componentDidMount() {
+      this.ref = fbase.syncState('bookstore/books', {
+         context: this,
+         state: 'books'
+      });
+   }
+
+   componentWillUnmount() {
+      fbase.removeBinding(this.ref);
+   }
+
    render() {
 
       const buttonCss = {
          float: "right"
-      }
+      };
+      const panelCss = {
+         padding: "10px",
+         background: "darkgray"
+      };
 
       return (
-         <div className="adminPanel col-md-4" >
+         <div className="adminPanel col-md-4" style={panelCss}>
             <form onSubmit={this.addNewBook}>
                <div className="form-group">
                   <input

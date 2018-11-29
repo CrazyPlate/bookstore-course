@@ -1,10 +1,30 @@
 import React from 'react';
 import BookView from './BookView';
+import { fbase } from '../fbase';
 
 class Inventory extends React.Component {
+
+   constructor() {
+      super();
+      this.state = {
+         books: []
+      }
+   }
+
+   componentDidMount() {
+      this.ref = fbase.syncState('bookstore/books', {
+         context: this,
+         state: 'books'
+      });
+   }
+
+   componentWillUnmount() {
+      fbase.removeBinding(this.ref);
+   }
+
    render() {
-      const bookListing = this.props.books.map( book => {
-         return <BookView book={book} />
+      const bookListing = this.state.books.map( book => {
+         return <BookView book={book} addToOrder={this.props.addToOrder} />
       });
 
       const ulCss = {
@@ -12,7 +32,8 @@ class Inventory extends React.Component {
       };
 
       return (
-         <ul className="inventory col-md-4" style={ulCss}>
+         <ul className="inventory col-md-6" style={ulCss}>
+            <h2>Bookstore inventory</h2>
             { bookListing }
          </ul>
       )

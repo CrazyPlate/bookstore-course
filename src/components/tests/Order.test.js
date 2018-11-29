@@ -10,18 +10,15 @@ describe('Order tests', () => {
 
    it('Order renders without a problem', () => {
       const div = document.createElement('div');
-      ReactDOM.render(<Order />, div);
+      const order = [];
+      ReactDOM.render(<Order order={order} />, div);
       ReactDOM.unmountComponentAtNode(div);
    })
 
    it('Snapshot matches', () => {
-      const wrapper = shallow(<Order />);
+      const order = [];
+      const wrapper = shallow(<Order order={order} />);
       expect(wrapper).toMatchSnapshot();
-   })
-
-   it('Zamówienie renders', () => {
-      const wrapper = shallow(<Order />);
-      expect(wrapper.find('div').text()).toBe('Zamówienie');
    })
 })
 

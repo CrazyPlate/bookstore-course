@@ -1,46 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class Header extends React.Component {
-
-   constructor() {
-      super();
-      this.state = {
-         bookstoreName: "Black books",
-         clicked: true,
-         textColor: "white",
-         backgroungColor: "black"
-      }
-   }
-
-   handleClick = () => {
-      if (this.state.clicked) {
-         this.setState({
-            bookstoreName: "White books",
-            textColor: "black",
-            backgroungColor: "white"
-         })
-      } else {
-         this.setState({
-            bookstoreName: "Black books",
-            textColor: "white",
-            backgroungColor: "black"
-         })
-      }
-      this.setState({
-         clicked: !this.state.clicked
-      })
-   }
-
    render() {
-
-      let headerCss = {
-         color: this.state.textColor,
-         backgroundColor: this.state.backgroungColor
-      }
-
       return (
-         <div className="row header" style={headerCss} onClick={this.handleClick} >
-            <h1>{this.state.bookstoreName}</h1>
+         <div className="row header" >
+            <h1>BookStore</h1>
+            <Link to="/admin" ><button className="btn btn-info goToAdmin">Admin Panel</button></Link>
          </div>
       )
    }
