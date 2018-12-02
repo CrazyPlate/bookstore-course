@@ -3,9 +3,17 @@ import OrderView from './OrderView';
 
 class Order extends React.Component {
    render() {
+      let totalPrice = 0;
 
       const orderedBooks = this.props.order.map( order => {
-         return <OrderView book={order} removeFromOrder={this.props.removeFromOrder}/>
+         totalPrice += parseFloat(order.price);
+         return (
+            <OrderView
+               key={order.name}
+               book={order} 
+               removeFromOrder={this.props.removeFromOrder}
+            />
+         )
       });
 
       const ulCss = {
@@ -16,6 +24,7 @@ class Order extends React.Component {
          <ul className="order col-md-5" style={ulCss}>
             <h2>Your Order</h2>
             { orderedBooks }
+            <h4>Total price: {totalPrice}$</h4>
          </ul>
       )
    }

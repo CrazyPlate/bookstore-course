@@ -1,75 +1,55 @@
 import React from 'react';
-import { fbase, firebaseApp } from '../fbase';
+import LoggingForm from './LoggingForm';
+import AddBookForm from './AddBookForm';
+import BookList from './BookList';
+import { fbase } from '../fbase';
+import { Link } from 'react-router-dom';
 
 class AdminPanel extends React.Component {
 
    constructor() {
       super();
       this.state = {
-         books: [],
-         book: {
+         loggedIn: localStorage.getItem('loggedIn'),
+         editMode: false,
+         bookToEdit: {
             name: "",
             author: "",
             description: "",
             onStock: true,
-            image: ""
-         },
-         loggedIn: false,
-         email: "",
-         password: ""
+            image: "",
+            genre: "",
+            price: ""
+         }
       };
    };
 
-   handleLoginChange = (evt) => {
+   changeLoggedIn = (newValue) => {
       this.setState({
-         [evt.target.name]: evt.target.value
+         loggedIn: newValue
       })
    }
 
-   handleChange = (evt) => {
-      let newBook;
-      if (evt.target.name === "onStock") {
-         newBook = {
-            ...this.state.book,
-            [evt.target.name]: evt.target.checked
-         }
-      } else {
-         newBook = {
-            ...this.state.book,
-            [evt.target.name]: evt.target.value
-         }
+   addNewBook = (book) => this.setState({
+      books: [...this.state.books, book],
+      editMode: false,
+      bookToEdit: {
+         name: "",
+         author: "",
+         description: "",
+         onStock: true,
+         image: "",
+         genre: "",
+         price: ""
       }
-
-      this.setState({
-         book: newBook
-      })
-   }
-
-   addNewBook = (evt) => {
-      evt.preventDefault();
-
-      let newBook = { ...this.state.book };
-
-      /* this.props.addBook(newBook); */
-
-      if (Array.isArray(this.state.books)) {
-         this.setState({ books: [...this.state.books, newBook] })
-      } else {
-         this.setState({ books: [newBook] })
-      }
-
-      this.setState({
-         book: {
-            name: "",
-            author: "",
-            description: "",
-            onStock: true,
-            image: ""
-         }
-      })
-   }
+   })
 
    componentDidMount() {
+      if (localStorage.getItem('loggedIn')) {
+         this.setState({
+            loggedIn: localStorage.getItem('loggedIn')
+         })
+      }
       this.ref = fbase.syncState('bookstore/books', {
          context: this,
          state: 'books'
@@ -80,90 +60,66 @@ class AdminPanel extends React.Component {
       fbase.removeBinding(this.ref);
    }
 
-   authenticate = (evt) => {
-      evt.preventDefault();
-      firebaseApp.auth().signInWithEmailAndPassword(
-         this.state.email,
-         this.state.password
-      ).then( () => {
-         this.setState({
-            loggedIn: true
-         })
-      }).catch( () => {
-         console.log("Unable to authenticate");
+   removeFromInventory = (title) => {
+      this.setState({
+         books: this.state.books.filter(book => title !== book.name)
       })
-      
+   }
+
+   sendBookToEdit = (bookToEdit) => {
+      this.setState({
+         editMode: true,
+         bookToEdit: bookToEdit
+      });
+   }
+
+   editBook = (oldBookTitle, bookAfterEdit) => {
+      const newBooks = this.state.books.filter(book => oldBookTitle !== book.name);
+      this.setState({
+         books: [...newBooks, bookAfterEdit],
+         editMode: false,
+         bookToEdit: {
+            name: "",
+            author: "",
+            description: "",
+            onStock: true,
+            image: "",
+            genre: "",
+            price: ""
+         }
+      })
    }
 
    render() {
       return (
          <div>
             {!this.state.loggedIn &&
-               <form onSubmit={this.authenticate}>
-                  <input type="text" placeholder="e-mail" id="email" name="email" className="form-control" onChange={this.handleLoginChange} value={this.state.email} />
-                  <input type="password" id="password" name="password" className="form-control" onChange={this.handleLoginChange} value={this.state.password} />
-                  <button type="submit" className="btn btn-primary">Log In</button>
-               </form>
+               <LoggingForm 
+                  changeLoggedIn = {this.changeLoggedIn}
+               />
             }
             {this.state.loggedIn &&
-               <div className="adminPanel col-md-4">
-                  <form onSubmit={this.addNewBook}>
-                     <div className="form-group">
-                        <input
-                           type="text"
-                           placeholder="Book name"
-                           id="name"
-                           name="name"
-                           className="form-control"
-                           onChange={this.handleChange}
-                           value={this.state.book.name}
-                        />
-                     </div>
-                     <div className="form-group">
-                        <input
-                           type="text"
-                           placeholder="Book author"
-                           id="author"
-                           name="author"
-                           className="form-control"
-                           onChange={this.handleChange}
-                           value={this.state.book.author}
-                        />
-                     </div>
-                     <div className="form-group">
-                        <textarea
-                           placeholder="Book description"
-                           id="description"
-                           name="description"
-                           className="form-control"
-                           onChange={this.handleChange}
-                           value={this.state.book.description}
-                        />
-                     </div>
-                     <div className="form-group">
-                        <input
-                           type="text"
-                           placeholder="Book image"
-                           id="image"
-                           name="image"
-                           className="form-control"
-                           onChange={this.handleChange}
-                           value={this.state.book.image}
-                        />
-                     </div>
-                     <div className="form-group">
-                        <input
-                           type="checkbox"
-                           id="onStock"
-                           name="onStock"
-                           onChange={this.handleChange}
-                           value={this.state.book.onStock}
-                        />
-                        <label htmlFor="onStock" className="form-check-label">On stock</label>
-                        <button type="submit" className="btn btn-secondary">Add</button>
-                     </div>
-
-                  </form>
+               <div className="adminPanel">
+                  <div className="col-md-4">
+                     <AddBookForm
+                        changeLoggedIn = {this.changeLoggedIn}
+                        editMode = {this.state.editMode}
+                        book = {this.state.bookToEdit}
+                        addNewBook = {this.addNewBook}
+                        editBook = {this.editBook}
+                     />
+                  </div>
+                  <div className="col-md-6">
+                     <BookList
+                        books = {this.state.books}
+                        editBook = {this.sendBookToEdit}
+                        removeFromInventory = {this.removeFromInventory}
+                        sendBookToEdit = {this.sendBookToEdit}
+                     />
+                  </div>
+                  <div className="col-md-2">
+                     <Link to="/" ><button className="btn btn-info rightBtn">Go to BookStore</button></Link>
+                  </div>
                </div>
             }
          </div>

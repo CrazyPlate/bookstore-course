@@ -7,7 +7,7 @@ class Inventory extends React.Component {
    constructor() {
       super();
       this.state = {
-         books: []
+
       }
    }
 
@@ -23,9 +23,20 @@ class Inventory extends React.Component {
    }
 
    render() {
-      const bookListing = this.state.books.map( book => {
-         return <BookView book={book} addToOrder={this.props.addToOrder} />
-      });
+
+      let bookListing;
+
+      if (Array.isArray(this.state.books)) {
+         bookListing = this.state.books.map( book => {
+            if (book.onStock) {
+               return (<BookView key={book.name} book={book} addToOrder={this.props.addToOrder} />)
+            } else {
+               return (null)
+            }
+         });
+      } else {
+         bookListing = <h4>No books on stock</h4>
+      }
 
       const ulCss = {
          listStyle: "none"

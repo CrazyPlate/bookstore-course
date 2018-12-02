@@ -6,7 +6,7 @@ class Header extends React.Component {
       return (
          <div className="row header" >
             <h1>BookStore</h1>
-            <Link to="/admin" ><button className="btn btn-info goToAdmin">Admin Panel</button></Link>
+            <Link to="/admin" ><button className="btn btn-info rightBtn">Admin Panel</button></Link>
          </div>
       )
    }
