@@ -10,7 +10,7 @@ body {
 }
 
 .app {
-  background-color: darkgray;
+  background-color: rgb(100, 96, 96);
 }
 
 .mainView {
@@ -21,7 +21,7 @@ body {
   width: 100vw;
   display: flex;
   flex-direction: row;
-  background-color: darkgrey;
+  background-color: rgb(100, 96, 96);
 }
 
 .header > h1 {
@@ -66,7 +66,7 @@ body {
   margin: 10px;
   padding: 10px 10px 60px 10px; 
   border-radius: 10px;
-  background-color: darkgrey;
+  background-color: rgb(100, 96, 96);
 }
 
 .footer > h3 {
